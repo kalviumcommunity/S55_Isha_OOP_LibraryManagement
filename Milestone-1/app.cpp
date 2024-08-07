@@ -1,6 +1,6 @@
-#include<iostream> 
-#include<conio.h>  
-#include<string>    
+#include<iostream>
+#include<conio.h>
+#include<string>
 using namespace std;
 
 // Class definition for Books
@@ -11,23 +11,23 @@ class Books {
     
     public:
         // Setter methods for setting book number, title, author and availability
-        void setBookNumber(string a) { bookNumber = a; }
-        void setTitle(string b) { title = b; }           
-        void setAuthor(string c) { author = c; }       
-        void setAvailability(string d) { availability = d; }   
+        void setBookNumber(string a) { this->bookNumber = a; }
+        void setTitle(string b) { this->title = b; }
+        void setAuthor(string c) { this->author = c; }
+        void setAvailability(string d) { this->availability = d; }
 
         // Getter methods for book number, title, author and availability
-        string getBookNumber() { return bookNumber; } 
-        string getTitle() { return title; }           
-        string getAuthor() { return author; }         
-        string getAvailability() { return availability; }       
+        string getBookNumber() { return this->bookNumber; }
+        string getTitle() { return this->title; }
+        string getAuthor() { return this->author; }
+        string getAvailability() { return this->availability; }
         
         // Method to display book details like book number, title, author and availability
         void displayBook() {
-            cout << "BookNumber: " << bookNumber << endl; 
-            cout << "Title: " << title << endl;           
-            cout << "Author: " << author << endl;       
-            cout << "Availability: " << availability << endl;  
+            cout << "Book Number: " << this->bookNumber << endl;
+            cout << "Title: " << this->title << endl;
+            cout << "Author: " << this->author << endl;
+            cout << "Availability: " << this->availability << endl;
         }
 };
 
@@ -39,20 +39,20 @@ class Member {
     
     public:
         // Setter methods for setting member ID, name and contact
-        void setMemberId(string id) { memberId = id; } 
-        void setName(string n) { name = n; }      
-        void setContact(string e) { contact = e; }   
+        void setMemberId(string id) { this->memberId = id; }
+        void setName(string n) { this->name = n; }
+        void setContact(string e) { this->contact = e; }
 
         // Getter methods for setting member ID, name and contact
-        string getMemberId() { return memberId; }
-        string getName() { return name; }         
-        string getContact() { return contact; }      
+        string getMemberId() { return this->memberId; }
+        string getName() { return this->name; }
+        string getContact() { return this->contact; }
 
         // Method to display member details like member ID, name and contact
         void displayMember() {
-            cout << "Member ID: " << memberId << endl; 
-            cout << "Name: " << name << endl;    
-            cout << "Contact: " << contact << endl;   
+            cout << "Member ID: " << this->memberId << endl;
+            cout << "Name: " << this->name << endl;
+            cout << "Contact: " << this->contact << endl;
         }
 };
 
