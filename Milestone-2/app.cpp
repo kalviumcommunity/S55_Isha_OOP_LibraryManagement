@@ -5,10 +5,14 @@ using namespace std;
 // Class definition for Books
 class Books {
 private:
-    // Private data members for storing book details
     string bookNumber, title, author, availability;
+    static int bookCount; // Static variable to count the number of Books objects
 
 public:
+    Books() {
+        bookCount++; 
+    }
+
     // Setter methods for setting book number, title, author, and availability
     void setBookNumber(string bookNumber) { this->bookNumber = bookNumber; }
     void setTitle(string title) { this->title = title; }
@@ -21,6 +25,11 @@ public:
     string getAuthor() { return this->author; }
     string getAvailability() { return this->availability; }
 
+    // Static method to get the count of Books objects
+    static int getBookCount() {
+        return bookCount;
+    }
+
     // Method to display book details like book number, title, author, and availability
     void displayBook() {
         cout << "Book Number: " << this->bookNumber << endl;
@@ -30,13 +39,20 @@ public:
     }
 };
 
+// Initialize the static variable
+int Books::bookCount = 0;
+
 // Class definition for Member
 class Member {
 private:
-    // Private data members for storing member details
     string memberId, name, contact;
+    static int memberCount; // Static variable to count the number of Member objects
 
 public:
+    Member() {
+        memberCount++; 
+    }
+
     // Setter methods for setting member ID, name, and contact
     void setMemberId(string memberId) { this->memberId = memberId; }
     void setName(string name) { this->name = name; }
@@ -47,6 +63,11 @@ public:
     string getName() { return this->name; }
     string getContact() { return this->contact; }
 
+    // Static method to get the count of Member objects
+    static int getMemberCount() {
+        return memberCount;
+    }
+
     // Method to display member details like member ID, name, and contact
     void displayMember() {
         cout << "Member ID: " << this->memberId << endl;
@@ -55,8 +76,10 @@ public:
     }
 };
 
+// Initialize the static variable
+int Member::memberCount = 0;
+
 int main() {
-    // Number of books and members (could be input by the user)
     int numBooks = 2;
     int numMembers = 2;
 
@@ -99,6 +122,10 @@ int main() {
         members[i].displayMember();
         cout << endl;
     }
+
+    // Displaying total counts of books and members
+    cout << "Total number of books: " << Books::getBookCount() << endl;
+    cout << "Total number of members: " << Member::getMemberCount() << endl;
 
     // Deallocating memory
     delete[] books;
