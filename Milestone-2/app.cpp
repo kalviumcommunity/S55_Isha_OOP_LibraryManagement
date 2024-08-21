@@ -10,7 +10,7 @@ private:
 
 public:
     Books() {
-        bookCount++; 
+        bookCount++; // Increment the count when a new object is created
     }
 
     // Setter methods for setting book number, title, author, and availability
@@ -28,6 +28,11 @@ public:
     // Static method to get the count of Books objects
     static int getBookCount() {
         return bookCount;
+    }
+
+    // Static member function to display the total number of books
+    static void displayTotalBooks() {
+        cout << "Total number of books: " << bookCount << endl;
     }
 
     // Method to display book details like book number, title, author, and availability
@@ -50,7 +55,7 @@ private:
 
 public:
     Member() {
-        memberCount++; 
+        memberCount++; // Increment the count when a new object is created
     }
 
     // Setter methods for setting member ID, name, and contact
@@ -66,6 +71,11 @@ public:
     // Static method to get the count of Member objects
     static int getMemberCount() {
         return memberCount;
+    }
+
+    // Static member function to display the total number of members
+    static void displayTotalMembers() {
+        cout << "Total number of members: " << memberCount << endl;
     }
 
     // Method to display member details like member ID, name, and contact
@@ -123,9 +133,9 @@ int main() {
         cout << endl;
     }
 
-    // Displaying total counts of books and members
-    cout << "Total number of books: " << Books::getBookCount() << endl;
-    cout << "Total number of members: " << Member::getMemberCount() << endl;
+    // Using static member functions to display the total counts
+    Books::displayTotalBooks();
+    Member::displayTotalMembers();
 
     // Deallocating memory
     delete[] books;
