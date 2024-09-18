@@ -2,12 +2,19 @@
 #include <string>
 using namespace std;
 
-// Class definition for Books
-class Books {
+// Abstract class for general functionalities
+class LibraryEntity {
+public:
+    // Pure virtual function to be implemented by derived classes
+    virtual void displayDetails() const = 0; // Abstract method
+};
+
+// Class definition for Books, inheriting from LibraryEntity
+class Books : public LibraryEntity {
 private:
     // Private member variables (Encapsulation)
     string bookNumber, title, author, availability;
-    
+
     // Static variable to count the number of Books objects
     static int bookCount;
 
@@ -17,18 +24,17 @@ public:
         bookCount++;
     }
 
-    // Public setter methods to set the values of private variables which ensure encapsulation
+    // Public setter methods (Mutators)
     void setBookNumber(string bookNumber) { this->bookNumber = bookNumber; }
     void setTitle(string title) { this->title = title; }
     void setAuthor(string author) { this->author = author; }
     void setAvailability(string availability) { this->availability = availability; }
 
-    // Public getter methods to retrieve the values of private variables which ensure encapsulation
-
-    string getBookNumber() { return this->bookNumber; }
-    string getTitle() { return this->title; }
-    string getAuthor() { return this->author; }
-    string getAvailability() { return this->availability; }
+    // Getter methods (Accessors)
+    string getBookNumber() const { return this->bookNumber; }
+    string getTitle() const { return this->title; }
+    string getAuthor() const { return this->author; }
+    string getAvailability() const { return this->availability; }
 
     // Static method to get the total number of books
     static int getBookCount() {
@@ -40,8 +46,8 @@ public:
         cout << "Total number of books: " << bookCount << endl;
     }
 
-    // Method to display details of the book
-    void displayBook() {
+    // Implementation of the abstract method to display details
+    void displayDetails() const override {
         cout << "Book Number: " << this->bookNumber << endl;
         cout << "Title: " << this->title << endl;
         cout << "Author: " << this->author << endl;
@@ -52,12 +58,12 @@ public:
 // Initialize the static variable
 int Books::bookCount = 0;
 
-// Class definition for Member
-class Member {
+// Class definition for Member, inheriting from LibraryEntity
+class Member : public LibraryEntity {
 private:
     // Private member variables (Encapsulation)
     string memberId, name, contact;
-    
+
     // Static variable to count the number of Member objects
     static int memberCount;
 
@@ -67,15 +73,15 @@ public:
         memberCount++;
     }
 
-    // Public setter methods (Mutators) to set the values of private variables for controlled modification of private data
+    // Public setter methods (Mutators)
     void setMemberId(string memberId) { this->memberId = memberId; }
     void setName(string name) { this->name = name; }
     void setContact(string contact) { this->contact = contact; }
 
-    // Public getter methods (Accessors) to retrieve the values of private variables to provide controlled access to private data
-    string getMemberId() { return this->memberId; }
-    string getName() { return this->name; }
-    string getContact() { return this->contact; }
+    // Getter methods (Accessors)
+    string getMemberId() const { return this->memberId; }
+    string getName() const { return this->name; }
+    string getContact() const { return this->contact; }
 
     // Static method to get the total number of members
     static int getMemberCount() {
@@ -87,8 +93,8 @@ public:
         cout << "Total number of members: " << memberCount << endl;
     }
 
-    // Method to display details of the member
-    void displayMember() {
+    // Implementation of the abstract method to display details
+    void displayDetails() const override {
         cout << "Member ID: " << this->memberId << endl;
         cout << "Name: " << this->name << endl;
         cout << "Contact: " << this->contact << endl;
@@ -116,10 +122,10 @@ int main() {
     books[1].setAuthor("J.K. Rowling");
     books[1].setAvailability("Available");
 
-    // Displaying book details using encapsulation (access through getters)
+    // Displaying book details using abstraction (interface via virtual function)
     for (int i = 0; i < numBooks; ++i) {
         cout << "Book " << i + 1 << " Details:" << endl;
-        books[i].displayBook();  // Calls display method to show details
+        books[i].displayDetails();  // Calls abstract displayDetails method
         cout << endl;
     }
 
@@ -135,10 +141,10 @@ int main() {
     members[1].setName("Pranjal");
     members[1].setContact("+919699603487");
 
-    // Displaying member details using encapsulation (access through getters)
+    // Displaying member details using abstraction (interface via virtual function)
     for (int i = 0; i < numMembers; ++i) {
         cout << "Member " << i + 1 << " Details:" << endl;
-        members[i].displayMember();  // Calls display method to show details
+        members[i].displayDetails();  // Calls abstract displayDetails method
         cout << endl;
     }
 
