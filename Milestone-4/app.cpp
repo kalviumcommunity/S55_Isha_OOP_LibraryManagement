@@ -5,8 +5,11 @@ using namespace std;
 // Abstract class for general functionalities (Base class for single inheritance)
 class LibraryEntity {
 public:
-    // Pure virtual function to be implemented by derived classes
-    virtual void displayDetails() const = 0; // Abstract method
+    // Pure virtual function (Virtual Function)
+    virtual void displayDetails() const = 0;  // Abstract method
+    virtual ~LibraryEntity() {
+        cout << "Destructor of LibraryEntity called\n";
+    }
 };
 
 // Class definition for Books, inheriting from LibraryEntity (Single Inheritance)
@@ -26,7 +29,7 @@ public:
     }
 
     // Parameterized Constructor
-    Books(string bookNumber, string title, string author, string availability) 
+    Books(string bookNumber, string title, string author, string availability)
         : bookNumber(bookNumber), title(title), author(author), availability(availability) {
         bookCount++;
         cout << "Parameterized Constructor of Books called\n";
@@ -62,9 +65,9 @@ public:
         cout << "Availability: " << this->availability << endl;
     }
 
-    // Overloaded function to display book details with additional info (Polymorphism)
+    // Overloaded function to display book details with additional info
     void displayDetails(bool showCount) const {
-        displayDetails(); // Call the basic version
+        displayDetails();  // Call the basic version
         if (showCount) {
             cout << "Total Books Available: " << getBookCount() << endl;
         }
@@ -86,7 +89,7 @@ public:
     }
 
     // Parameterized Constructor
-    EBook(string bookNumber, string title, string author, string availability, string fileSize, string format) 
+    EBook(string bookNumber, string title, string author, string availability, string fileSize, string format)
         : Books(bookNumber, title, author, availability), fileSize(fileSize), format(format) {
         cout << "Parameterized Constructor of EBook called\n";
     }
@@ -105,7 +108,7 @@ public:
 
     // Override displayDetails to show additional information for EBook
     void displayDetails() const override {
-        Books::displayDetails(); // Call base class method to display book details
+        Books::displayDetails();  // Call base class method to display book details
         cout << "File Size: " << this->fileSize << endl;
         cout << "Format: " << this->format << endl;
     }
@@ -128,7 +131,7 @@ public:
     }
 
     // Parameterized Constructor
-    Member(string memberId, string name, string contact) 
+    Member(string memberId, string name, string contact)
         : memberId(memberId), name(name), contact(contact) {
         memberCount++;
         cout << "Parameterized Constructor of Member called\n";
@@ -178,7 +181,7 @@ int main() {
     // Displaying book details using polymorphism (Function Overloading)
     for (int i = 0; i < numBooks; ++i) {
         cout << "Book " << i + 1 << " Details:" << endl;
-        books[i].displayDetails(true); // Using the overloaded function to display the total count
+        books[i].displayDetails(true);  // Using the overloaded function to display the total count
         cout << endl;
     }
 
@@ -188,7 +191,7 @@ int main() {
         Member("M2", "Pranjal", "+919699603487")
     };
 
-    // Displaying member details using abstraction
+    // Displaying member details using abstraction and virtual functions
     for (int i = 0; i < numMembers; ++i) {
         cout << "Member " << i + 1 << " Details:" << endl;
         members[i].displayDetails();
@@ -198,7 +201,7 @@ int main() {
     // Creating EBook object using parameterized constructor
     EBook ebook("3", "Digital Fortress", "Dan Brown", "Available", "5MB", "PDF");
 
-    // Displaying EBook details (Multi-level inheritance)
+    // Displaying EBook details (Multi-level inheritance and virtual function)
     cout << "EBook Details:" << endl;
     ebook.displayDetails();
     cout << endl;
