@@ -19,9 +19,22 @@ private:
     static int bookCount;
 
 public:
-    // Constructor to increment the book count when a new object is created
+    // Default Constructor
     Books() {
         bookCount++;
+        cout << "Default Constructor of Books called\n";
+    }
+
+    // Parameterized Constructor
+    Books(string bookNumber, string title, string author, string availability) 
+        : bookNumber(bookNumber), title(title), author(author), availability(availability) {
+        bookCount++;
+        cout << "Parameterized Constructor of Books called\n";
+    }
+
+    // Destructor
+    ~Books() {
+        cout << "Destructor of Books called\n";
     }
 
     // Public setter methods (Mutators)
@@ -39,11 +52,6 @@ public:
     // Static method to get the total number of books
     static int getBookCount() {
         return bookCount;
-    }
-
-    // Static member function to display the total number of books
-    static void displayTotalBooks() {
-        cout << "Total number of books: " << bookCount << endl;
     }
 
     // Implementation of the abstract method to display details
@@ -68,9 +76,22 @@ private:
     static int memberCount;
 
 public:
-    // Constructor to increment the member count when a new object is created
+    // Default Constructor
     Member() {
         memberCount++;
+        cout << "Default Constructor of Member called\n";
+    }
+
+    // Parameterized Constructor
+    Member(string memberId, string name, string contact) 
+        : memberId(memberId), name(name), contact(contact) {
+        memberCount++;
+        cout << "Parameterized Constructor of Member called\n";
+    }
+
+    // Destructor
+    ~Member() {
+        cout << "Destructor of Member called\n";
     }
 
     // Public setter methods (Mutators)
@@ -88,11 +109,6 @@ public:
         return memberCount;
     }
 
-    // Static member function to display the total number of members
-    static void displayTotalMembers() {
-        cout << "Total number of members: " << memberCount << endl;
-    }
-
     // Implementation of the abstract method to display details
     void displayDetails() const override {
         cout << "Member ID: " << this->memberId << endl;
@@ -108,51 +124,33 @@ int main() {
     int numBooks = 2;
     int numMembers = 2;
 
-    // Dynamically allocating memory for an array of Books objects
-    Books* books = new Books[numBooks];
+    // Using parameterized constructor for Books
+    Books* books = new Books[2]{
+        Books("1", "Staying On", "Paul Scott", "Available"),
+        Books("2", "Harry Potter and the Goblet of Fire", "J.K. Rowling", "Available")
+    };
 
-    // Setting details for the books using encapsulation (access through setters)
-    books[0].setBookNumber("1");
-    books[0].setTitle("Staying On");
-    books[0].setAuthor("Paul Scott");
-    books[0].setAvailability("Available");
-
-    books[1].setBookNumber("2");
-    books[1].setTitle("Harry Potter and the Goblet of Fire");
-    books[1].setAuthor("J.K. Rowling");
-    books[1].setAvailability("Available");
-
-    // Displaying book details using abstraction (interface via virtual function)
+    // Displaying book details using abstraction
     for (int i = 0; i < numBooks; ++i) {
         cout << "Book " << i + 1 << " Details:" << endl;
-        books[i].displayDetails();  // Calls abstract displayDetails method
+        books[i].displayDetails();
         cout << endl;
     }
 
-    // Dynamically allocating memory for an array of Member objects
-    Member* members = new Member[numMembers];
+    // Using parameterized constructor for Member
+    Member* members = new Member[2]{
+        Member("M1", "Isha", "+918010992527"),
+        Member("M2", "Pranjal", "+919699603487")
+    };
 
-    // Setting details for the members using encapsulation (access through setters)
-    members[0].setMemberId("M1");
-    members[0].setName("Isha");
-    members[0].setContact("+918010992527");
-
-    members[1].setMemberId("M2");
-    members[1].setName("Pranjal");
-    members[1].setContact("+919699603487");
-
-    // Displaying member details using abstraction (interface via virtual function)
+    // Displaying member details using abstraction
     for (int i = 0; i < numMembers; ++i) {
         cout << "Member " << i + 1 << " Details:" << endl;
-        members[i].displayDetails();  // Calls abstract displayDetails method
+        members[i].displayDetails();
         cout << endl;
     }
 
-    // Using static member functions to display the total counts
-    Books::displayTotalBooks();
-    Member::displayTotalMembers();
-
-    // Deallocating memory
+    // Deallocating memory (calls destructors)
     delete[] books;
     delete[] members;
 
