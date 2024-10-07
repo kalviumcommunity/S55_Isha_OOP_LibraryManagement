@@ -54,12 +54,20 @@ public:
         return bookCount;
     }
 
-    // Implementation of the abstract method to display details
+    // Overloaded method for polymorphism (Function Overloading)
     void displayDetails() const override {
         cout << "Book Number: " << this->bookNumber << endl;
         cout << "Title: " << this->title << endl;
         cout << "Author: " << this->author << endl;
         cout << "Availability: " << this->availability << endl;
+    }
+
+    // Overloaded function to display book details with additional info (Polymorphism)
+    void displayDetails(bool showCount) const {
+        displayDetails(); // Call the basic version
+        if (showCount) {
+            cout << "Total Books Available: " << getBookCount() << endl;
+        }
     }
 };
 
@@ -167,10 +175,10 @@ int main() {
         Books("2", "Harry Potter and the Goblet of Fire", "J.K. Rowling", "Available")
     };
 
-    // Displaying book details using abstraction
+    // Displaying book details using polymorphism (Function Overloading)
     for (int i = 0; i < numBooks; ++i) {
         cout << "Book " << i + 1 << " Details:" << endl;
-        books[i].displayDetails();
+        books[i].displayDetails(true); // Using the overloaded function to display the total count
         cout << endl;
     }
 
