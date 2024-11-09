@@ -170,39 +170,45 @@ public:
 int Member::memberCount = 0;
 
 int main() {
-    // Using std::vector to manage book objects
-    vector<Books> books = {
-        Books("1", "Staying On", "Paul Scott", "Available"),
-        Books("2", "Harry Potter and the Goblet of Fire", "J.K. Rowling", "Available")
-    };
+    // Using std::vector to manage pointers to LibraryEntity objects
+    vector<LibraryEntity*> entities;
+
+    // Adding books to the library
+    entities.push_back(new Books("1", "Staying On", "Paul Scott", "Available"));
+    entities.push_back(new Books("2", "Harry Potter and the Goblet of Fire", "J.K. Rowling", "Available"));
 
     // Displaying book details
-    for (size_t i = 0; i < books.size(); ++i) {
-        cout << "Book " << i + 1 << " Details:" << endl;
-        books[i].displayDetails(true);  // Using the overloaded function to display the total count
+    cout << "Book Details:" << endl;
+    for (size_t i = 0; i < entities.size(); ++i) {
+        entities[i]->displayDetails();
         cout << endl;
     }
 
-    // Using std::vector to manage member objects
-    vector<Member> members = {
-        Member("M1", "Isha", "+918010992527"),
-        Member("M2", "Pranjal", "+919699603487")
-    };
+    // Adding members to the library
+    entities.push_back(new Member("M1", "Isha", "+918010992527"));
+    entities.push_back(new Member("M2", "Pranjal", "+919699603487"));
 
     // Displaying member details
-    for (size_t i = 0; i < members.size(); ++i) {
-        cout << "Member " << i + 1 << " Details:" << endl;
-        members[i].displayDetails();
+    cout << "Member Details:" << endl;
+    for (size_t i = 0; i < entities.size(); ++i) {
+        entities[i]->displayDetails();
         cout << endl;
     }
 
-    // Creating an EBook object directly
-    EBook ebook("3", "Digital Fortress", "Dan Brown", "Available", "5MB", "PDF");
+    // Adding an EBook to the library
+    entities.push_back(new EBook("3", "Digital Fortress", "Dan Brown", "Available", "5MB", "PDF"));
 
     // Displaying EBook details
     cout << "EBook Details:" << endl;
-    ebook.displayDetails();
-    cout << endl;
+    for (size_t i = 0; i < entities.size(); ++i) {
+        entities[i]->displayDetails();
+        cout << endl;
+    }
+
+    // Cleaning up dynamically allocated memory
+    for (size_t i = 0; i < entities.size(); ++i) {
+        delete entities[i];
+    }
 
     return 0;
 }
