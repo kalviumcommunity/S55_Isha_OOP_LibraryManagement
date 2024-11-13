@@ -2,7 +2,7 @@
 #include <vector>
 #include <string>
 using namespace std;
-
+// 
 // Abstract class for general functionalities (Base class for single inheritance)
 // Demonstrates the Open/Closed Principle (OCP) by providing a base for extension
 // without modification for derived classes like Books and Member
