@@ -2,7 +2,7 @@
 #include <vector>
 #include <string>
 using namespace std;
-
+// 
 // Abstract class for general functionalities (Base class for single inheritance)
 class LibraryEntity {
 public:
