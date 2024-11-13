@@ -4,6 +4,7 @@ using namespace std;
 
 // Class definition for Books
 class Books {
+    
 private:
     // Private data members for storing book details
     string bookNumber, title, author, availability;
